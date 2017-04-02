@@ -1,0 +1,7 @@
+<div style="margin: 10px">
+  <pre>
+    <%= @user.first_name %> <%= @user.last_name %>
+    <p><%= @user.description %></p>
+    <%= link_to 'Photos', get_user_photos_path(@user) %>
+  </pre>
+</div>

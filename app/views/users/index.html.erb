@@ -1,0 +1,16 @@
+<h2 class="number">There are <%= pluralize(@size, 'user') %> <i class="fa fa-users"></i></h2>
+
+<div class="row">
+  <% @users.each do |user| %>
+    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+      <div class="card">
+        <img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+        <div class="card-block">
+          <h5 class="text-bold username center">
+            <%= link_to user.first_name + ' ' + user.last_name, get_user_path(user) %>
+          </h5>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

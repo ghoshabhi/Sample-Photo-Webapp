@@ -1,0 +1,8 @@
+<h1>Photos</h1>
+<%= link_to 'Home', '/users/index' %>
+<pre>
+  <% @photos.each do |photo| %>
+      <%= image_tag photo.file_name, alt: "#{photo.file_name}", style:'height: 150px; width: 150px' %>
+      <br/>
+  <% end %>
+</pre>
