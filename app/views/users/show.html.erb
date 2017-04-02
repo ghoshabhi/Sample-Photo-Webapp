@@ -1,7 +1,26 @@
-<div style="margin: 10px">
-  <pre>
-    <%= @user.first_name %> <%= @user.last_name %>
-    <p><%= @user.description %></p>
-    <%= link_to 'Photos', get_user_photos_path(@user) %>
-  </pre>
+<div class="modal-content col-md-6">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    <h4 class="modal-title" id="myModalLabel" style="font-weight: bolder">More About <%= @user.first_name %> ...</h4>
+  </div>
+  <div class="modal-body">
+    <div class="center">
+      <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
+      <h3 class="media-heading"><%= @user.first_name + ' ' + @user.last_name %></h3>
+      <h4 class="media-heading"><%= link_to "Photos  by #{@user.first_name}", get_user_photos_path(@user)  %></h4>
+    </div>
+    <hr>
+    <div>
+      <div class="media-heading text-left" style="font-size: large">
+        <strong>Bio: </strong><br>
+        <%= @user.description %>
+      </div>
+      <br>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="center">
+      <%= link_to 'Go Back', root_url, class: 'btn btn-default' %>
+    </div>
+  </div>
 </div>
