@@ -9,6 +9,9 @@
         data-target="#myModal"
         style="cursor:pointer"
       >
+        <p>
+          <%= photo.created_at.strftime('%b %d') + "'" + photo.created_at.strftime('%y') + ' at ' + photo.created_at.strftime('%r') %>
+        </p>
         <%= image_tag photo.file_name, alt: "#{photo.file_name}", class: 'img-responsive' %>
       </div>
   <% end %>
@@ -65,7 +68,7 @@
                 for(var i = 0; i < parseInt(data['size']); i++) {
                     var comment_text = data['comments'][i].comment_text;
                     var comment_date = data['comments'][i].created_at;
-                    comment_date = moment(comment_date).format('MM/DD/YYYY h:mm a');
+                    comment_date = moment(comment_date).format('MM/DD//YYYY, h:mm a');
                     var comment_by = data['comments'][i].user['first_name'] + ' ' + data['comments'][i].user['last_name'];
                     var user_profile = '/user/' + data['comments'][i].user['id'];
                     //console.log(comment_by + ' | ' + user_profile + ' | ' + comment_text);
