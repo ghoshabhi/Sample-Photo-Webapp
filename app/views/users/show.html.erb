@@ -31,7 +31,7 @@
     <h4>Other Users:</h4>
     <ul>
       <% @all_users.each do |user| %>
-        <li><%= link_to user.first_name + ' ' + user.last_name, get_user_path(user) %></li>
+        <li style="font-size: large;"><%= link_to user.first_name + ' ' + user.last_name, get_user_path(user) %></li>
       <% end %>
     </ul>
   </div>
