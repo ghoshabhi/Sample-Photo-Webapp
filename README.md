@@ -21,9 +21,11 @@ bundle install
 rake db:migrate
 ```
 
-* Starting the server: 
+* Starting the server: Type the following command in your command line 
 ```ruby
 rails s
 ```
+
+The app should be running on: `localhost:3000` if everything went well
 
 * Deployment instructions: Docker version coming soon!
