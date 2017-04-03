@@ -1,8 +1,86 @@
 <h1>Photos</h1>
-<%= link_to 'Home', '/users/index' %>
-<pre>
+<div class="row">
   <% @photos.each do |photo| %>
-      <%= image_tag photo.file_name, alt: "#{photo.file_name}", style:'height: 150px; width: 150px' %>
-      <br/>
+      <div
+        class="col-lg-4 col-md-4 col-sm-4 col-xs-6 viewPhoto"
+        data-photo-id="<%= photo.id %>"
+        data-user-id="<%= photo.user.id %>"
+        data-toggle="modal"
+        data-target="#myModal"
+        style="cursor:pointer"
+      >
+        <%= image_tag photo.file_name, alt: "#{photo.file_name}", class: 'img-responsive' %>
+      </div>
   <% end %>
-</pre>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <p class="comment-size"></p>
+        </div>
+        <div class="modal-body">
+          <div style="display: flex; flex-direction: column">
+            <div width="100%">
+              <img src="" class="img-responsive image-preview" style="margin:10px">
+            </div>
+            <hr>
+            <div>
+              <h4>Comments:</h4>
+              <div id="id1" class="comments-block">
+                <!--comments go here-->
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <a href='#' class="btn btn-default" data-dismiss="modal">Close</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript">
+    $('.viewPhoto').on('click', function (e) {
+        e.preventDefault();
+        const imageUrl = $(this).find('img').attr('src');
+        $.ajax({
+            url: "<%= get_comments_on_photo_path %>",
+            type: 'get',
+            dataType: 'json',
+            data: { photoId: $(this).data('photoId') },
+            success: function (data) {
+                //console.log(JSON.stringify(data, null).replace(/\\/g, ""));
+                $('.image-preview').attr('src', imageUrl);
+                $('.comment-size').text('Number of Comments: ' + data['size']);
+                // console.log(data['comments']);
+                //console.log(data['comments'][0].comment_text);
+                $('.comments-block').html(" ");
+                for(var i = 0; i < parseInt(data['size']); i++) {
+                    var comment_text = data['comments'][i].comment_text;
+                    var comment_date = data['comments'][i].created_at;
+                    comment_date = moment(comment_date).format('MM/DD/YYYY h:mm a');
+                    var comment_by = data['comments'][i].user['first_name'] + ' ' + data['comments'][i].user['last_name'];
+                    var user_profile = '/user/' + data['comments'][i].user['id'];
+                    //console.log(comment_by + ' | ' + user_profile + ' | ' + comment_text);
+                    var html = `
+                                <a href='${user_profile}'>${comment_by}</a>: ${comment_text}
+                                <b><i class='pull-right'>${comment_date}</i></b>
+                                <br/><br/>`;
+                    $('.comments-block').append(html);
+                }
+
+                $('#myModal').modal('show');
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
+</script>

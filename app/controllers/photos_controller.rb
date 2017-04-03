@@ -6,19 +6,15 @@ class PhotosController < ApplicationController
     if @user && @photos
       respond_to do |format|
         format.html
-        format.json { render json: { data: { user: @user, photos: @photos }}}
+        format.json { render json: { data: { user: @user, photos: @photos } } }
       end
     end
   end
-end
 
-# if params.key?(:id)
-#  @photos = Photo.where(user_id: params[:id])
-#  @user = User.find(params[:id])
-#  respond_to do |format|
-#    format.html
-#    format.json { render json: { data: { user: @user, photos: @photos }}}
-#  end
-#else
-#  redirect_to 'users#index'
-#end
+  def fetch_comments_on_photos
+    @comments = Comment.includes(:user).where(photo_id: params[:photoId])
+    respond_to do |format|
+      format.json { render json: { size: @comments.size, comments: @comments.as_json(include: { user: @user }) } }
+    end
+  end
+end
