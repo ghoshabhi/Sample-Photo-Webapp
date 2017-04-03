@@ -7,7 +7,7 @@
     <div class="center">
       <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
       <h3 class="media-heading"><%= @user.first_name + ' ' + @user.last_name %></h3>
-      <h4 class="media-heading"><%= link_to "Photos  by #{@user.first_name}", get_user_photos_path(@user)  %></h4>
+      <h4 class="media-heading"><%= link_to 'Gallery', get_user_photos_path(@user)  %></h4>
     </div>
     <hr>
     <div>

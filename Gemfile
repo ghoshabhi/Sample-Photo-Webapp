@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 # Bootstrap gem
 gem 'bootstrap-sass', '3.3.6'
 gem 'font-awesome-rails'
+gem 'momentjs-rails'
 #gem 'bootstrap', '~> 4.0.0.alpha6'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
