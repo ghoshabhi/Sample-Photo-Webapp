@@ -1,24 +1,29 @@
-# README
+# Photo Site
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Sample webapp to showcase key features of Ruby on Rails framework. 
 
-Things you may want to cover:
+* Ruby version : `ruby 2.4.0p0`
 
-* Ruby version
+* Rails version: `Rails 5.0.2`
 
-* System dependencies
+* Intalling Dependencies: Make sure you have Ruby and Rails installed on your machine
+```ruby
+bundle install
+```
 
-* Configuration
-
-* Database creation
+* Database creation: Run the following commands to setup the database:
+```ruby
+ rake db:create:all
+```
 
 * Database initialization
+```ruby
+rake db:migrate
+```
 
-* How to run the test suite
+* Starting the server: 
+```ruby
+rails s
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Deployment instructions: Docker version coming soon!
