@@ -2,7 +2,7 @@
 
 Sample webapp to showcase key features of Ruby on Rails framework. 
 
-* Ruby version : `ruby 2.4.0p0`
+* Ruby version : `ruby 2.4.0`
 
 * Rails version: `Rails 5.0.2`
 
