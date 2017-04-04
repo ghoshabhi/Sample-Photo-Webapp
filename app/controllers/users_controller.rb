@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @all_users = User.where.not(id: params[:id])
     respond_to do |format|
       format.html
-      format.json { render json: { user: @user, user_photos: @user_photos }}
+      format.json { render json: { user: @user, user_photos: @user_photos } }
     end
   end
 end
